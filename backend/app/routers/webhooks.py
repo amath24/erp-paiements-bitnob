@@ -49,6 +49,8 @@ async def bitnob_webhook_endpoint(request: Request, db: Session = Depends(get_db
     Reception du webhook Bitnob en corps brut (await request.body()).
     Ne jamais mettre de modele Pydantic sur cette route pour supporter
     les Content-Types specifiques de Bitnob.
+    Commit atomique : event_id et mise a jour facture sont commites ensemble.
+    Si le traitement plante, le rollback permet a Bitnob de relancer.
     """
     raw = await request.body()
     if config.bitnob_webhook_secret and not check_signature(request, raw):
@@ -62,24 +64,16 @@ async def bitnob_webhook_endpoint(request: Request, db: Session = Depends(get_db
     event_id = evt.get("event_id") or request.headers.get("x-bitnob-event-id")
     event_name = evt.get("event", "unknown")
 
-    # Dedoublonnage anti-replay via la table webhook_events
+    # Dedoublonnage : verifier AVANT tout traitement
     if event_id:
         existing = db.query(WebhookEvent).filter(WebhookEvent.event_id == event_id).first()
         if existing:
-            return Response(status_code=200)  # Doublon deja traite
-        db_evt = WebhookEvent(
-            event_id=event_id,
-            event_type=event_name,
-            raw_payload=raw.decode("utf-8", errors="ignore"),
-            created_at=datetime.datetime.utcnow(),
-        )
-        db.add(db_evt)
-        db.commit()
+            return Response(status_code=200)  # Doublon deja traite et commite
 
     data = evt.get("data") or {}
     print(f"[webhook recu] {event_name} :", json.dumps(data)[:300])
 
-    # Si paiement confirme
+    # Traitement facture (PAS encore commite)
     if event_name in PAID_EVENTS:
         ref = data.get("reference")
         inv_id = data.get("invoice_id") or data.get("id")
@@ -93,7 +87,25 @@ async def bitnob_webhook_endpoint(request: Request, db: Session = Depends(get_db
             inv.status = InvoiceStatus.PAID
             inv.paid = True
             inv.paid_at = datetime.datetime.utcnow()
-            db.commit()
-            print(f"[webhook] Facture {inv.reference} validee en base comme PAID.")
+            print(f"[webhook] Facture {inv.reference} marquee PAID (en attente de commit).")
+
+    # Enregistrement de l'event APRES le traitement, dans le meme commit atomique
+    if event_id:
+        db_evt = WebhookEvent(
+            event_id=event_id,
+            event_type=event_name,
+            raw_payload=raw.decode("utf-8", errors="ignore"),
+            created_at=datetime.datetime.utcnow(),
+        )
+        db.add(db_evt)
+
+    # Commit unique : si plantage ici, Bitnob peut relancer et le doublon ne sera pas bloque
+    try:
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        print(f"[webhook] Erreur commit : {e}")
+        return Response("db error", status_code=500)
 
     return Response(status_code=200)
+

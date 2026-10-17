@@ -17,6 +17,7 @@ class InvoiceResponse(BaseModel):
     status: str
     expiresAt: Optional[str] = None
     qrCodeUrl: str
+    sandbox: bool = False  # True = pas de connexion Bitnob reelle ; afficher un avertissement
 
 
 class InvoiceStatusResponse(BaseModel):

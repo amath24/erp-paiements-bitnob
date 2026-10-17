@@ -1,9 +1,9 @@
-import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+from backend.app.config import config  # SEULE source des variables d'env (AGENTS.md regle 3)
 
-# Par defaut SQLite local zero-config, ou PostgreSQL via DATABASE_URL
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./erp.db")
+# Par defaut SQLite local zero-config, ou PostgreSQL via DATABASE_URL dans .env
+DATABASE_URL = config.database_url
 
 connect_args = {}
 if DATABASE_URL.startswith("sqlite"):

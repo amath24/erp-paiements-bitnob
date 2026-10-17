@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 
 from backend.app.bitnob.client import BitnobError, bitnob
 from backend.app.config import config
-from backend.app.constants import InvoiceStatus, PAID_STATUSES
+from backend.app.constants import InvoiceStatus, PAID_STATUSES, SAT_TO_XOF_RATE
 from db.models import Customer, Invoice
 
 
@@ -32,8 +32,8 @@ async def create_lightning_invoice(
     """Cree une facture Lightning, enregistre dans la base de donnees et renvoie le QR code."""
     reference = f"inv_{int(time.time() * 1000)}_{secrets.token_hex(3)}"
     now = datetime.datetime.utcnow()
-    # Taux approximatif 1 sat = ~5 XOF pour affichage ERP
-    amount_xof = satoshis * 5
+    # Taux centralise dans constants.SAT_TO_XOF_RATE (1 sat ~ 0.4 FCFA)
+    amount_xof = int(satoshis * SAT_TO_XOF_RATE)
 
     # Recherche ou creation du client
     cust = db.query(Customer).filter(Customer.name == customer_name).first()
@@ -67,10 +67,14 @@ async def create_lightning_invoice(
         print(f"[Bitnob warning] Appel API externe non abouti ({e}), repli sur mode sandbox local.")
 
     # Si sandbox sans cles ou testnet indisponible : generation BOLT11 factice
+    # IMPORTANT : is_sandbox = True signale explicitement que ce n'est pas une facture reelle
+    is_sandbox = False
     if not bitnob_id:
+        is_sandbox = True
         bitnob_id = f"inv_ln_{secrets.token_hex(8)}"
         payment_request = f"lntb{satoshis}u1p{secrets.token_hex(20)}"
         expires_at = (now + datetime.timedelta(hours=1)).isoformat() + "Z"
+        print("[invoice] ATTENTION : facture sandbox locale (pas de connexion Bitnob reelle).")
 
     qr_url = generate_qr_data_url(payment_request)
 
@@ -87,7 +91,7 @@ async def create_lightning_invoice(
         paid=False,
         payment_request=payment_request,
         qr_code_url=qr_url,
-        demo=False,
+        demo=is_sandbox,    # True si facture locale sans connexion Bitnob reelle
         created_at=now,
     )
     db.add(db_invoice)
@@ -103,6 +107,7 @@ async def create_lightning_invoice(
         "status": db_invoice.status,
         "expiresAt": expires_at,
         "qrCodeUrl": qr_url,
+        "sandbox": is_sandbox,  # True = pas de connexion Bitnob reelle ; le front doit afficher un avertissement
     }
 
 

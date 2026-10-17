@@ -25,11 +25,12 @@ class Config:
     bitnob_customer_id: str
     bitnob_webhook_secret: str
     database_url: str
+    gemini_api_key: str  # optionnel : active l'agent IA LLM reel
 
 
 config = Config(
     port=int(os.getenv("PORT", "3000")),
-    demo_mode=os.getenv("DEMO_MODE", "true").lower() == "true",
+    demo_mode=os.getenv("DEMO_MODE", "false").lower() == "true",  # defaut false : ne pas simuler en prod
     confirm_payout=os.getenv("CONFIRM_PAYOUT", "false").lower() == "true",
     bitnob_client_id=os.environ.get("BITNOB_CLIENT_ID", ""),
     bitnob_client_secret=os.environ.get("BITNOB_CLIENT_SECRET", ""),
@@ -37,4 +38,5 @@ config = Config(
     bitnob_customer_id=os.getenv("BITNOB_CUSTOMER_ID", ""),
     bitnob_webhook_secret=os.getenv("BITNOB_WEBHOOK_SECRET", ""),
     database_url=os.getenv("DATABASE_URL", "sqlite:///./erp.db"),
+    gemini_api_key=os.getenv("GEMINI_API_KEY", ""),
 )
