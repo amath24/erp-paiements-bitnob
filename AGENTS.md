@@ -3,10 +3,10 @@
 Projet : backend Python 3 + FastAPI (async, httpx) qui utilise l'API Bitnob v2 (paiements Bitcoin Lightning, sandbox).
 Environnement de l'utilisateur : Windows + PowerShell. Reponds en francais.
 
-1. Lis CONTRACT.md, config.py et constants.py avant toute modification.
+1. Lis CONTRACT.md, backend/app/config.py et backend/app/constants.py avant toute modification.
 2. N'utilise QUE les noms (variables d'environnement, routes, champs JSON, statuts, evenements) qui y figurent.
    N'en invente jamais : s'il en manque un, dis-le dans ta reponse et demande de l'ajouter au contrat.
-3. N'ecris jamais os.environ ni os.getenv hors de config.py : importe `config`.
+3. N'ecris jamais os.environ ni os.getenv hors de backend/app/config.py : importe `config`.
 4. Ne modifie pas un fichier dont tu n'es pas le proprietaire (tableau dans CONTRACT.md) sans l'accord de l'utilisateur.
 5. Modifications petites et ciblees. Ne reecris JAMAIS un fichier entier.
 6. Aucun secret dans le code ni dans les logs. Ne renvoie et ne logge jamais `preimage`.
@@ -23,6 +23,6 @@ Environnement de l'utilisateur : Windows + PowerShell. Reponds en francais.
     faites, lis-les (git diff) avant de continuer ; ne les ecrase pas.
 13. Avant de dire que c'est termine : py_compile et le test concerne.
 14. Quand tu donnes des commandes a l'utilisateur : PowerShell Windows, completes, a copier-coller, avec
-    `cd "C:\chemin\du\projet"` en premiere ligne ; utilise `.venv\Scripts\python.exe` (pas d'activation du venv).
+    `cd "C:\Users\amath\Documents\hackathon-bitnob-py"` en premiere ligne ; utilise `.venv\Scripts\python.exe` (pas d'activation du venv).
 15. FastAPI : pour le webhook Bitnob, lis TOUJOURS `await request.body()` (corps brut). Ne mets jamais de modele
     Pydantic sur cette route (le content-type de Bitnob est parfois double). Les routes API repondent { "error": ... }.

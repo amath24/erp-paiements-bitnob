@@ -53,33 +53,30 @@ Ce document detaille le fonctionnement interne du backend, le flux d'une transac
 
 ---
 
-## 2. Role de chaque fichier
+## 2. Structure Modulaire & Repartition de l'Equipe
 
-| Fichier / Dossier | Role et Responsabilites |
-|---|---|
-| `main.py` | Point d'entree FastAPI, definition des routes de l'API REST, gestion des webhooks, stockage en memoire de l'etat des factures et montage des fichiers statiques. |
-| `config.py` | Chargement securise des variables d'environnement (`.env`) avec valeurs de repli pour le developpement sandbox. |
-| `constants.py` | Constantes applicatives centralisees (statuts `pending`/`paid`, codes d'evenements webhook, parametres d'expiration). |
-| `bitnob.py` | Client HTTP asynchrone (`httpx`) implementant le protocole de signature cryptographique HMAC-SHA256 exige par l'API Bitnob v2. |
-| `settlement.py` | Squelette metier pour la conversion automatique BTC -> USDT et l'initiation de payouts vers des beneficiaires Mobile Money (Wave, Orange Money SN). |
-| `static/` | Application front-end simple et legere (HTML5 / Vanilla JS) pour la demonstration. |
-| `CONTRACT.md` | Contrat d'interface formel entre developpeurs (routes, formats JSON, variables d'environnement). |
-| `LECONS.md` | Base de connaissances des pieges, comportements specifiques et reponses de la sandbox Bitnob. |
-| `handoff.py` | Outil de diagnostic rapide pour verifier l'etat git, la syntaxe Python et la disponibilite du serveur local. |
+| Pole | Repertoire | Role et Responsabilites |
+|---|---|---|
+| **P1** | `backend/app/` | API FastAPI, client Bitnob v2 signe HMAC, routes factures, webhooks bruts et services de conversion USDT/payout. |
+| **P2** | `db/` | Modeles relationnels SQLAlchemy (`Customer`, `Invoice`, `Settlement`, `WebhookEvent`), vues analytiques (`v_kpis`, `v_transactions_summary`) et jeu d'essai `seed.py`. |
+| **P3** | `ai/` | Assistant IA financier : moteur Text-to-SQL sur les vues ERP, securite stricte en lecture seule via `sql_guard.py` et routeur `/api/ai/query`. |
+| **P4** | `frontend/` & `static/` | Caisse enregistreuse (POS), generation instantanee du QR code Lightning, polling du statut en direct et modal de reglement. |
+| **P5** | `frontend/` & `static/` | Tableau de bord analytique des KPIs financiers et interface de chat interactif avec l'agent IA. |
 
 ---
 
-## 3. Limites connues de la sandbox et du kit
+## 3. Limites connues de la sandbox et solutions apportees
 
-1. **Etat en memoire non persistant :** Les factures creees et les identifiants d'evenements sont stockes dans des dictionnaires en memoire (`invoices`, `seen_events`). Tout redemarrage du serveur ou de rechargement Uvicorn efface les factures en cours.
-2. **Statut "paye" reel non confirme sur testnet :** La fonctionnalite de retrait Lightning etant desactivee sur les comptes sandbox de base ("Lightning withdrawals feature is currently not available"), un paiement reel emis vers un nœud externe n'a pas pu etre observe. La demonstration s'appuie donc sur la simulation webhook ou l'endpoint demo.
-3. **Format exact de signature du webhook :** La documentation officielle de Bitnob etant ambigue sur la formule exacte de signature entrante des webhooks, `main.py` teste plusieurs combinaisons plausibles de hachage et trace les resultats pour identification.
+1. **Persistance des donnees :** Le probleme de volatilite en memoire du kit initial est desormais **resolu** par la base de donnees SQLAlchemy (SQLite natif sans Docker ou PostgreSQL cloud). Les factures et webhooks persistent meme apres redemarrage.
+2. **Statut "paye" reel non confirme sur testnet :** La fonctionnalite de retrait Lightning etant desactivee sur les comptes sandbox de base ("Lightning withdrawals feature is currently not available"), un paiement reel emis vers un nœud externe n'a pas pu etre observe. La demonstration s'appuie sur la simulation webhook ou l'endpoint demo.
+3. **Format exact de signature du webhook :** La documentation officielle de Bitnob etant ambigue sur la formule exacte de signature entrante des webhooks, `backend/app/routers/webhooks.py` teste plusieurs combinaisons de hachage et trace les resultats pour identification.
 
 ---
 
 ## 4. Decisions architecturales
 
+- **Architecture sans Docker :** Utilisation de SQLite par defaut pour un fonctionnement 100% natif et immediat sur Windows PowerShell, tout en maintenant la compatibilite totale avec PostgreSQL via `DATABASE_URL`.
 - **FastAPI Asynchrone :** Utilisation de routes `async` et du client `httpx.AsyncClient` pour assurer des operations non-bloquantes lors des appels reseau vers l'API Bitnob.
-- **Corps brut pour les webhooks :** Lecture obligatoire de `await request.body()` sans validation Pydantic prealable, car Bitnob envoie parfois un en-tete `Content-Type` duplique (`application/json, application/json`) rejetant les parseurs stricts.
-- **Zero secrets dans le code :** Toutes les cles privees, identifiants de webhook et customer IDs sont strictement lus depuis les variables d'environnement chargees par `config.py`.
-- **Preimage protegee :** La `preimage` (preuve cryptographique de paiement Lightning retournee par Bitnob) ne doit jamais etre retournee aux clients web ni exposee dans les logs.
+- **Corps brut pour les webhooks :** Lecture obligatoire de `await request.body()` sans validation Pydantic prealable, car Bitnob envoie parfois un en-tete `Content-Type` duplique rejetant les parseurs stricts.
+- **Securite SQL Guard :** L'agent IA n'a acces a la base qu'a travers des requetes `SELECT` verifiees par `sql_guard.py`. Aucune ecriture ni suppression n'est permise via l'interface IA.
+- **Preimage protegee :** La `preimage` (preuve cryptographique de paiement Lightning) ne doit jamais etre retournee aux clients web ni exposee dans les logs.

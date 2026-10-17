@@ -1,27 +1,30 @@
 # Contrat de l'equipe (toute modification = on previent le groupe)
 
-## Proprietaires des fichiers (a remplir au debut)
-| Fichier | Role | Proprietaire |
+## Proprietaires des fichiers (Repartition P1 a P5)
+| Fichier / Dossier | Role | Proprietaire |
 |---|---|---|
-| config.py, constants.py | variables d'environnement, noms partages | |
-| bitnob.py | client Bitnob signe (HMAC) | |
-| main.py | routes factures, webhook, demo, reglement | |
-| settlement.py | conversion BTC vers USDT, payout mobile money | |
-| static/ | interface web | |
+| `backend/app/` | API FastAPI, Client Bitnob, Routes paiements, services | **P1** |
+| `db/` | Modeles SQLAlchemy, vues SQL (v_kpis), seed.py, database | **P2** |
+| `ai/` | Agent Text-to-SQL, securite sql_guard, router IA | **P3** |
+| `frontend/src/components/PosCheckout.jsx` | Caisse enregistreuse, QR Lightning, modal paiement | **P4** |
+| `frontend/src/components/` (Dashboard, AiAssistant) | Tableaux de bord KPIs, chat assistant IA | **P5** |
 
 ## Variables d'environnement (noms exacts, lues UNIQUEMENT dans config.py)
 BITNOB_CLIENT_ID, BITNOB_CLIENT_SECRET, BITNOB_BASE_URL, BITNOB_CUSTOMER_ID,
-BITNOB_WEBHOOK_SECRET, DEMO_MODE, CONFIRM_PAYOUT, PORT
+BITNOB_WEBHOOK_SECRET, DEMO_MODE, CONFIRM_PAYOUT, PORT, DATABASE_URL, GEMINI_API_KEY
 
 ## Routes
 | Route | Corps | Reponse |
 |---|---|---|
-| POST /api/pay/create-invoice | { satoshis, description } | { id, reference, paymentRequest, amountSat, status, expiresAt, qrCodeUrl } |
+| POST /api/pay/create-invoice | { satoshis, description, customerName? } | { id, reference, paymentRequest, amountSat, status, expiresAt, qrCodeUrl } |
 | GET /api/pay/status/{id} | | { id, status, paid, amountSat, demo? } |
 | POST /api/pay/demo-pay/{id} | | { id, status, paid, demo, amountSat } (seulement si DEMO_MODE=true) |
 | POST /api/settle/{id} | { xofAmount, beneficiary } | { ok, timeline } ou { already, timeline } |
 | POST /webhooks/bitnob | corps brut Bitnob | 200 |
-| GET /health | | { status, demo } |
+| GET /api/erp/kpis | | { todayRevenueXof, todayInvoicesCount, totalSatsCollected, ... } |
+| GET /api/erp/invoices | | [ { id, reference, amountSat, status, description, createdAt } ] |
+| POST /api/ai/query | { question } | { answer, sql, data } |
+| GET /health | | { status, demo, db } |
 
 Erreurs : toujours { "error": "message" } ; donnees invalides = 400.
 

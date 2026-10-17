@@ -6,3 +6,8 @@ PROGRESS.md
 *.bak
 *.before-*
 qr-test.png
+*.db
+*.sqlite
+*.sqlite3
+node_modules/
+dist/

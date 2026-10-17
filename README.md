@@ -39,26 +39,31 @@ cd "C:\Users\amath\Documents\hackathon-bitnob-py"
 py -m venv .venv
 .venv\Scripts\python.exe -m pip install -r requirements.txt
 copy .env.example .env
-.venv\Scripts\python.exe -m uvicorn main:app --reload --port 3000
+.venv\Scripts\python.exe -m uvicorn backend.app.main:app --reload --port 3000
 ```
 
-- Interface web : [http://localhost:3000](http://localhost:3000)
+> **Astuce de lancement rapide :** Vous pouvez egalement executer `./start-dev.ps1` pour initialiser la base de donnees et lancer le serveur en une commande.
+
+- Interface web ERP : [http://localhost:3000](http://localhost:3000)
 - Documentation OpenAPI interactive : [http://localhost:3000/docs](http://localhost:3000/docs)
 
 ---
 
 ## Contrat d'API (Routes)
 
-Conforme a [CONTRACT.md](file:///c:/Users/amath/Documents/hackathon-bitnob/hackathon-bitnob-py/CONTRACT.md) :
+Conforme a [CONTRACT.md](file:///c:/Users/amath/Documents/hackathon-bitnob/hackathon-bitnob-py/CONTRACT.md) et [docs/api-contract.md](file:///c:/Users/amath/Documents/hackathon-bitnob/hackathon-bitnob-py/docs/api-contract.md) :
 
 | Methode | Route | Corps | Reponse attendue |
 |---|---|---|---|
-| `POST` | `/api/pay/create-invoice` | `{ "satoshis": 1000, "description": "..." }` | `{ "id", "reference", "paymentRequest", "amountSat", "status", "expiresAt", "qrCodeUrl" }` |
+| `POST` | `/api/pay/create-invoice` | `{ "satoshis": 1000, "description": "...", "customerName": "..." }` | `{ "id", "reference", "paymentRequest", "amountSat", "status", "expiresAt", "qrCodeUrl" }` |
 | `GET` | `/api/pay/status/{id}` | *(aucun)* | `{ "id", "status", "paid", "amountSat", "demo" }` |
 | `POST` | `/api/pay/demo-pay/{id}` | *(aucun)* | `{ "id", "status", "paid", "demo", "amountSat" }` *(uniquement si DEMO_MODE=true)* |
 | `POST` | `/api/settle/{id}` | `{ "xofAmount": 5000, "beneficiary": "..." }` | `{ "ok", "timeline" }` ou `{ "already", "timeline" }` |
 | `POST` | `/webhooks/bitnob` | *(corps brut Bitnob)* | `200` (FastAPI lit `await request.body()`) |
-| `GET` | `/health` | *(aucun)* | `{ "status": "ok", "demo": true/false }` |
+| `GET` | `/api/erp/kpis` | *(aucun)* | `{ "todayRevenueXof", "todayInvoicesCount", "totalSatsCollected", ... }` |
+| `GET` | `/api/erp/invoices` | *(aucun)* | `[ { "id", "reference", "amountSat", "status", "customerName", ... } ]` |
+| `POST` | `/api/ai/query` | `{ "question": "..." }` | `{ "answer", "sql", "data" }` |
+| `GET` | `/health` | *(aucun)* | `{ "status": "success", "demo": true/false, "db": "connected" }` |
 
 Toutes les erreurs renvoient le format unifie `{ "error": "message descriptif" }`.
 
