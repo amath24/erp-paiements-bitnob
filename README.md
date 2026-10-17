@@ -3,7 +3,7 @@
 > Description : A completer
 
 **Equipe :** A completer  
-**Hackathon :** Code & Chain Dakar (Sandbox Bitnob v2)
+**Hackathon :** Code & Chain Dakar (live  Bitnob v2)
 
 ---
 
