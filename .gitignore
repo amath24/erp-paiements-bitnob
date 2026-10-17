@@ -11,3 +11,4 @@ qr-test.png
 *.sqlite3
 node_modules/
 dist/
+CHANGELOG_BACKEND.md
