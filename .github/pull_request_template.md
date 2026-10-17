@@ -1,0 +1,5 @@
+- **Quoi :** 
+- **Pourquoi :** 
+- **Comment teste :** 
+- **Fichiers touches :** 
+- **Secrets verifies (aucun .env, aucune cle API commitee) :** [ ] Oui

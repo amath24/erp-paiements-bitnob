@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paiement Lightning</title></head>
+<body style="font-family:sans-serif;max-width:420px;margin:2rem auto;text-align:center">
+<h1>Payer en Lightning</h1>
+<input id="sats" type="number" value="1000" min="1"> sats<br><br>
+<input id="desc" value="Mon projet - commande 1"><br><br>
+<button id="go">Creer la facture</button>
+<div id="out"></div>
+<script>
+let timer;
+document.getElementById('go').onclick = async () => {
+  clearInterval(timer);
+  const r = await fetch('/api/pay/create-invoice', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ satoshis: Number(sats.value), description: desc.value }),
+  });
+  const inv = await r.json();
+  if (!r.ok) { out.textContent = 'Erreur : ' + inv.error; return; }
+  out.innerHTML = '<p><img src="' + inv.qrCodeUrl + '" width="260"></p><p id="st">En attente de paiement...</p>' +
+    '<p style="font-size:11px;word-break:break-all">' + inv.paymentRequest + '</p>' +
+    '<button id="demo">Simuler le paiement (demo)</button>';
+  document.getElementById('demo').onclick = () => fetch('/api/pay/demo-pay/' + inv.id, { method: 'POST' });
+  timer = setInterval(async () => {
+    const s = await (await fetch('/api/pay/status/' + inv.id)).json();
+    if (s.paid) { clearInterval(timer); document.getElementById('st').textContent = 'PAYE : ' + s.amountSat + ' sats' + (s.demo ? ' (simule)' : ''); }
+  }, 2000);
+};
+</script></body></html>
