@@ -1,0 +1,61 @@
+{
+  "_comment": "Corridors de payout. 'documented' = listé sur bitnob.dev/docs/payouts/supported-currencies (lu le 17/10/2026). 'verified' passe à true UNIQUEMENT après un appel réussi à GET /api/payouts/supported-countries dans VOTRE sandbox (le sandbox n'a qu'une partie des pays). Les codes opérateur sont des codes internes : remplacez 'bitnob_code' par la valeur renvoyée par GET /api/payouts/banks/{pays}. Les limites sont provisoires : à remplacer par GET /api/payouts/limits.",
+  "currencies": {
+    "XOF": 0, "NGN": 2, "GHS": 2, "KES": 2, "USD": 2,
+    "USDT": 6, "USDC": 6, "BTC": 8
+  },
+  "corridors": {
+    "SN": {
+      "name": "Sénégal", "currency": "XOF", "destination_types": ["mobile_money"],
+      "documented": true, "verified": false, "min_major": "100", "max_major": "2000000",
+      "operators": {
+        "WAVE":         {"name": "Wave",         "aliases": ["wave", "wave_sn", "wave senegal"], "bitnob_code": null},
+        "ORANGE_MONEY": {"name": "Orange Money", "aliases": ["orange", "orange money", "om", "orange_sn", "orange_money"], "bitnob_code": null},
+        "FREE_MONEY":   {"name": "Free Money",   "aliases": ["free", "free money", "free_sn", "free_money", "yas"], "bitnob_code": null},
+        "EXPRESSO":     {"name": "Expresso",     "aliases": ["expresso", "e-money", "emoney", "expresso_sn"], "bitnob_code": null}
+      },
+      "regions": ["Dakar", "Thiès", "Diourbel", "Fatick", "Kaolack", "Kaffrine", "Kolda", "Ziguinchor",
+                  "Sédhiou", "Tambacounda", "Kédougou", "Matam", "Saint-Louis", "Louga"]
+    },
+    "CI": {
+      "name": "Côte d'Ivoire", "currency": "XOF", "destination_types": ["mobile_money"],
+      "documented": true, "verified": false, "min_major": "100", "max_major": "2000000",
+      "operators": {
+        "ORANGE_MONEY": {"name": "Orange Money", "aliases": ["orange", "orange money", "om"], "bitnob_code": null},
+        "MTN":          {"name": "MTN MoMo",     "aliases": ["mtn", "mtn momo", "momo"], "bitnob_code": null},
+        "MOOV":         {"name": "Moov Money",   "aliases": ["moov", "moov money"], "bitnob_code": null}
+      }
+    },
+    "NE": {
+      "name": "Niger", "currency": "XOF", "destination_types": ["mobile_money"],
+      "documented": true, "verified": false, "min_major": "100", "max_major": "2000000",
+      "operators": {
+        "MOOV":   {"name": "Moov Money",   "aliases": ["moov", "moov money"], "bitnob_code": null},
+        "AIRTEL": {"name": "Airtel Money", "aliases": ["airtel", "airtel money"], "bitnob_code": null}
+      }
+    },
+    "NG": {
+      "name": "Nigeria", "currency": "NGN", "destination_types": ["bank"],
+      "documented": true, "verified": false, "min_major": "100", "max_major": "5000000"
+    },
+    "GH": {
+      "name": "Ghana", "currency": "GHS", "destination_types": ["mobile_money"],
+      "documented": true, "verified": false, "min_major": "1", "max_major": "50000",
+      "operators": {
+        "MTN": {"name": "MTN MoMo", "aliases": ["mtn", "mtn momo", "momo", "mtn_gh"], "bitnob_code": null}
+      }
+    },
+    "KE": {
+      "name": "Kenya", "currency": "KES", "destination_types": ["mobile_money"],
+      "documented": true, "verified": false, "min_major": "10", "max_major": "500000",
+      "operators": {
+        "MPESA": {"name": "M-Pesa", "aliases": ["mpesa", "m-pesa", "mpesa_ke"], "bitnob_code": null}
+      }
+    }
+  },
+  "rules": {
+    "outlier_factor": 10,
+    "outlier_min_group_size": 5,
+    "unverified_corridor_is_error": false
+  }
+}
