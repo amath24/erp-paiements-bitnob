@@ -12,3 +12,8 @@ qr-test.png
 node_modules/
 dist/
 CHANGELOG_BACKEND.md
+ 
+# Next.js Frontend
+.next/
+*.tsbuildinfo
+next-env.d.ts

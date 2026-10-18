@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --sunu-yellow: #f5c200;
+    --sunu-yellow-hover: #e5b500;
+    --sunu-yellow-light: #fff9e6;
+    --sunu-dark: #0f172a;
+    --sunu-dark-card: #1e293b;
+    --sunu-dark-border: #334155;
+    --sunu-bg: #f8f9fb;
+    --sunu-card: #ffffff;
+    --sunu-border: #eaecf0;
+    --sunu-text-main: #101828;
+    --sunu-text-muted: #667085;
+  }
+
+  body {
+    background-color: var(--sunu-bg);
+    color: var(--sunu-text-main);
+    font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
