@@ -1,0 +1,7 @@
+phonenumbers>=8.13
+psycopg[binary]>=3.1
+pandas>=2.0
+streamlit>=1.35
+plotly>=5.20
+pytest>=8.0
+openpyxl>=3.1
