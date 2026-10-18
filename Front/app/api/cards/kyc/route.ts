@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { success: false, error: "Utilisateur PayLink Afrique introuvable." },
+        { success: false, error: "Utilisateur SunuPay introuvable." },
         { status: 404 }
       );
     }

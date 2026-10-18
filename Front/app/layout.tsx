@@ -13,10 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PayLink Afrique — Factures & Paiements Crypto pour l'Afrique et le Monde",
+  title: "SunuPay — Factures & Paiements Crypto pour l'Afrique et le Monde",
   description:
-    "Plateforme FinTech de facturation et de paiement hybride Bitcoin, Stablecoins et Mobile Money pour freelances, commerçants et PME en Afrique.",
-  keywords: ["PayLink", "PayLink Afrique", "Bitnob", "Bitcoin", "USDT", "USDC", "Factures", "Mobile Money", "Fintech", "Afrique", "Sénégal"],
+    "Plateforme FinTech de facturation et de paiement hybride Bitcoin, Stablecoins et Mobile Money pour freelances, commerçants et PME.",
+  keywords: ["SunuPay", "Bitcoin", "USDT", "USDC", "Factures", "Mobile Money", "Fintech", "Afrique", "Sénégal"],
 };
 
 export default function RootLayout({

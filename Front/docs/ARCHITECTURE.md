@@ -1,8 +1,8 @@
-# Architecture Technique & Guide d'Intégration — PayLink Afrique
+# Architecture Technique & Guide d'Intégration — SunuPay
 
 ## 1. Vue d'ensemble du système
 
-**PayLink Afrique** est une plateforme FinTech conçue pour permettre aux indépendants, créateurs, commerçants et PME d'encaisser des paiements internationaux en crypto-actifs (Bitcoin Lightning, USDT, USDC) et de convertir / décaisser instantanément ces fonds vers les réseaux locaux de Mobile Money (Wave, Orange Money, Free, MTN MoMo, M-Pesa) et comptes bancaires.
+**SunuPay** est une plateforme FinTech conçue pour permettre aux indépendants, créateurs, commerçants et PME d'encaisser des paiements internationaux en crypto-actifs (Bitcoin Lightning, USDT, USDC) et de convertir / décaisser instantanément ces fonds vers les réseaux locaux de Mobile Money (Wave, Orange Money, Free, MTN MoMo, M-Pesa) et comptes bancaires.
 
 ```
 +--------------------------------------------------------------------------+
@@ -36,7 +36,7 @@
 1. Le freelance saisit les détails de sa facture sur `/factures`.
 2. Le backend serveur appelle l'endpoint Bitnob `/checkout` pour provisionner une adresse sécurisée ou génère un QR code instantané.
 3. Le client effectue le paiement depuis n'importe quel wallet mondial (Binance, Trust Wallet, Phoenix, Kraken).
-4. Le webhook Bitnob notifie PayLink Afrique via `/api/webhooks/bitnob`. La signature HMAC est vérifiée.
+4. Le webhook Bitnob notifie SunuPay via `/api/webhooks/bitnob`. La signature HMAC est vérifiée.
 5. Le solde du freelance est crédité en temps réel.
 
 ### B. Transfert vers Mobile Money

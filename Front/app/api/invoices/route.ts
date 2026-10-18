@@ -21,8 +21,8 @@ export async function POST(req: NextRequest) {
       customerEmail: "client@example.com",
       description: `${description} (Facture ${invoiceNumber})`,
       reference: invoiceNumber,
-      callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL || "https://paylink.africa"}/api/webhooks/bitnob`,
-      successUrl: `${process.env.NEXT_PUBLIC_APP_URL || "https://paylink.africa"}/pay/${invoiceNumber}?status=success`,
+      callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL || "https://sunupay.io"}/api/webhooks/bitnob`,
+      successUrl: `${process.env.NEXT_PUBLIC_APP_URL || "https://sunupay.io"}/pay/${invoiceNumber}?status=success`,
     });
 
     const newInvoice = {
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       notes,
       status: "pending",
       createdAt: new Date().toISOString(),
-      shareableUrl: checkoutResult.checkoutUrl || `https://paylink.africa/pay/${invoiceNumber}`,
+      shareableUrl: checkoutResult.checkoutUrl || `https://sunupay.io/pay/${invoiceNumber}`,
       isDemo: checkoutResult.isDemo,
     };
 

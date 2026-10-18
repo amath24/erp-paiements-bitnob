@@ -3,8 +3,8 @@ import OpenAI from "openai";
 import { generateAssistantReply } from "@/lib/assistant-engine";
 import { getFinancialAnalytics } from "@/lib/supabase/test-client";
 
-// System instructions embedding PayLink Afrique product context and security constraints
-const SYSTEM_PROMPT = `Tu es l'Assistant IA FinTech officiel de PayLink Afrique.
+// System instructions embedding PayLink Afrique ERP / SunuPay product context and security constraints
+const SYSTEM_PROMPT = `Tu es l'Assistant IA FinTech officiel de SunuPay (projet PayLink Afrique ERP).
 Ton rôle est de répondre avec clarté, professionnalisme et exactitude aux questions des utilisateurs (freelances, administrateurs de PME, directeurs financiers).
 
 RÈGLES ABSOLUES ET SÉCURITÉ :
@@ -108,7 +108,7 @@ CONTEXTE FINANCIER EN DIRECT (Source : ${analytics.source}) :
       success: true,
       reply: result.reply,
       computation: result.computation,
-      provider: "PayLink Afrique Deterministic Financial Engine (Sandbox Mode)",
+      provider: "SunuPay Deterministic Financial Engine (Sandbox Mode)",
       source: analytics.source,
       hasApiKey: false,
     });

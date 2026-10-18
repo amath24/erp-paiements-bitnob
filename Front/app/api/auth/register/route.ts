@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
         {
           success: false,
           alreadyExists: true,
-          error: "Un compte PayLink Afrique existe déjà avec cette adresse e-mail. Veuillez vous connecter.",
+          error: "Un compte SunuPay existe déjà avec cette adresse e-mail. Veuillez vous connecter.",
         },
         { status: 409 }
       );
@@ -151,7 +151,7 @@ export async function POST(req: NextRequest) {
         {
           success: true,
           message:
-            "Votre compte PayLink Afrique a été créé avec succès et votre profil client Bitnob est synchronisé.",
+            "Votre compte SunuPay a été créé avec succès et votre profil client Bitnob est synchronisé.",
           user: {
             id: sunupayUser.id,
             firstName: sunupayUser.firstName,
@@ -185,7 +185,7 @@ export async function POST(req: NextRequest) {
         {
           success: true,
           message:
-            "Votre compte PayLink Afrique a été créé avec succès. La synchronisation de votre profil Bitnob est en attente et sera réessayée automatiquement.",
+            "Votre compte SunuPay a été créé avec succès. La synchronisation de votre profil Bitnob est en attente et sera réessayée automatiquement.",
           user: {
             id: sunupayUser.id,
             firstName: sunupayUser.firstName,

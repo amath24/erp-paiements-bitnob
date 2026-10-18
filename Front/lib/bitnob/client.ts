@@ -262,7 +262,7 @@ export class BitnobClient {
       return {
         isDemo: true,
         success: true,
-        paymentRequest: `lnbc${amountSat}0n1p...paylink`,
+        paymentRequest: `lnbc${amountSat}0n1p...sunupay`,
         reference: `ln-${Date.now()}`,
       };
     }
@@ -305,7 +305,7 @@ export class BitnobClient {
       return {
         isDemo: true,
         success: true,
-        checkoutUrl: `https://paylink.africa/pay/${payload.reference}`,
+        checkoutUrl: `https://sunupay.io/pay/${payload.reference}`,
         reference: payload.reference,
       };
     }
@@ -423,7 +423,7 @@ export class BitnobClient {
         phone_number: payload.phoneNumber.trim(),
         country_code: payload.countryCode || "SN",
         customer_type: payload.customerType || "individual",
-        reference: payload.reference || `paylink_ref_${Date.now()}`,
+        reference: payload.reference || `sunupay_ref_${Date.now()}`,
       };
 
       const headers = this.clientId
@@ -532,9 +532,9 @@ export class BitnobClient {
       return {
         id: customerId,
         customerType: "individual",
-        email: "client@paylink.africa",
+        email: "client@sunupay.io",
         firstName: "Client",
-        lastName: "PayLink",
+        lastName: "SunuPay",
         phoneNumber: "+221770000000",
         isActive: true,
         kycStatus: "unverified",

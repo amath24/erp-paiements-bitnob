@@ -44,10 +44,10 @@ export function InvoiceQRCode({ value, size = 180, className }: InvoiceQRCodePro
         </div>
       )}
 
-      {/* PayLink Afrique yellow badge in center of QR */}
+      {/* SunuPay yellow badge in center of QR */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-8 h-8 rounded-lg bg-[#F5C200] border-2 border-white flex items-center justify-center shadow-md">
-          <span className="text-xs font-black text-[#0f172a]">P</span>
+          <span className="text-xs font-black text-[#0f172a]">S</span>
         </div>
       </div>
     </div>

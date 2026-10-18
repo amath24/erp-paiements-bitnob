@@ -1,4 +1,4 @@
-// Script de validation automatisée de l'assistant IA PayLink Afrique
+// Script de validation automatisée de l'assistant IA SunuPay
 // Teste la conformité, la sécurité, le calcul déterministe et l'isolation Supabase
 
 const BASE_URL = 'http://localhost:3000/api/assistant';
@@ -6,9 +6,9 @@ const BASE_URL = 'http://localhost:3000/api/assistant';
 const testCases = [
   {
     id: 'TEST_01_PRODUIT',
-    description: 'Compréhension du produit PayLink Afrique',
-    message: 'Peux-tu me présenter PayLink Afrique et son fonctionnement avec Bitnob ?',
-    expectedKeywords: ['PayLink', 'Bitnob', 'Lightning', 'Mobile Money']
+    description: 'Compréhension du produit PayLink Afrique ERP / SunuPay',
+    message: 'Peux-tu me présenter PayLink Afrique ERP et son fonctionnement avec SunuPay et Bitnob ?',
+    expectedKeywords: ['PayLink', 'SunuPay', 'Bitnob', 'Lightning', 'Mobile Money']
   },
   {
     id: 'TEST_02_GHANA_PAYOUT',
@@ -56,7 +56,7 @@ const testCases = [
 
 async function runTests() {
   console.log('===================================================================');
-  console.log('🧪 SUITE DE TESTS OFFICIELLE DE L\'ASSISTANT IA PAYLINK AFRIQUE');
+  console.log('🧪 SUITE DE TESTS OFFICIELLE DE L\'ASSISTANT IA SUNUPAY / PAYLINK');
   console.log('===================================================================\n');
 
   let passed = 0;

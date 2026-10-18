@@ -39,7 +39,7 @@ if (globalUsers.size === 0) {
     id: "usr_sunupay_amadou_01",
     firstName: "Amadou",
     lastName: "Dione",
-    email: "amadou@paylink.africa",
+    email: "amadou@sunupay.com",
     phone: "+221771234567",
     countryCode: "SN",
     createdAt: "2026-01-15T10:00:00.000Z",
@@ -49,8 +49,7 @@ if (globalUsers.size === 0) {
     bitnobSyncedAt: "2026-01-15T10:01:00.000Z",
     kycStatus: "approved",
   };
-  globalUsers.set("amadou@paylink.africa", defaultUser);
-  globalUsers.set("amadou@sunupay.com", defaultUser);
+  globalUsers.set(defaultUser.email.toLowerCase(), defaultUser);
 }
 
 /**
