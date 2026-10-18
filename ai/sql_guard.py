@@ -2,6 +2,8 @@ import re
 
 # Tables et vues autorisees en lecture seule
 ALLOWED_SOURCES = {
+    "batches",
+    "payouts",
     "invoices",
     "settlements",
     "customers",
@@ -31,13 +33,24 @@ FORBIDDEN_KEYWORDS = [
 
 def _extract_from_tables(query: str) -> set[str]:
     """
-    Extrait les identifiants de tables/vues apres les mots-cles FROM et JOIN.
+    Extrait les identifiants de tables/vues apres les mots-cles FROM et JOIN,
+    y compris les tables jointes par virgule (FROM t1, t2).
     Retourne un ensemble de noms en minuscules.
-    Volontairement strict : tout identifiant apres FROM/JOIN non autorise declenche un refus.
     """
-    pattern = r"(?:FROM|JOIN)\s+([a-zA-Z_][a-zA-Z0-9_]*)"
-    tokens = re.findall(pattern, query, re.IGNORECASE)
-    return {t.lower() for t in tokens}
+    tables = set()
+    from_matches = re.finditer(r"\bFROM\s+([^;]+?)(?=\s+(?:WHERE|JOIN|LEFT|RIGHT|INNER|OUTER|CROSS|GROUP|ORDER|LIMIT|HAVING|\))\b|;|$)", query, re.IGNORECASE)
+    for m in from_matches:
+        clause = m.group(1)
+        for part in clause.split(","):
+            token = re.match(r"^([a-zA-Z_][a-zA-Z0-9_]*)", part.strip())
+            if token:
+                tables.add(token.group(1).lower())
+
+    join_matches = re.findall(r"\bJOIN\s+([a-zA-Z_][a-zA-Z0-9_]*)", query, re.IGNORECASE)
+    for t in join_matches:
+        tables.add(t.lower())
+
+    return tables
 
 
 def validate_sql_query(query: str) -> tuple[bool, str | None]:
