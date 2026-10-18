@@ -65,10 +65,10 @@ export function PayClient({ id }: PayClientProps) {
 
           <div className="inline-flex items-center gap-2 mb-2">
             <div className="w-8 h-8 rounded-xl bg-[#F5C200] flex items-center justify-center text-[#0f172a] font-black text-sm">
-              S
+              P
             </div>
             <span className="font-extrabold text-lg tracking-tight">
-              Sunu<span className="text-[#F5C200]">Pay</span> Checkout
+              Pay<span className="text-[#F5C200]">Link</span> Checkout
             </span>
           </div>
 
@@ -207,7 +207,7 @@ export function PayClient({ id }: PayClientProps) {
 
       <div className="mt-6 text-center text-xs text-gray-400 flex items-center gap-1.5">
         <ShieldCheck className="w-4 h-4 text-emerald-500" />
-        <span>Paiement crypté et protégé par SunuPay Gateway</span>
+        <span>Paiement crypté et protégé par PayLink Afrique Gateway</span>
       </div>
     </div>
   );

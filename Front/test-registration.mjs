@@ -1,12 +1,12 @@
 // ===================================================================
-// SUITE DE TESTS : INSCRIPTION SUNUPAY & SYNCHRONISATION BITNOB
+// SUITE DE TESTS : INSCRIPTION PAYLINK AFRIQUE & SYNCHRONISATION BITNOB
 // ===================================================================
 
 const BASE_URL = process.env.TEST_URL || "http://localhost:3000";
 
 async function runTests() {
   console.log("===================================================================");
-  console.log("🧪 SUITE DE TESTS OFFICIELLE : INSCRIPTION SUNUPAY & PROFIL BITNOB");
+  console.log("🧪 SUITE DE TESTS OFFICIELLE : INSCRIPTION PAYLINK AFRIQUE & PROFIL BITNOB");
   console.log("===================================================================");
 
   let passed = 0;
@@ -99,8 +99,8 @@ async function runTests() {
   // ─────────────────────────────────────────────────────────────
   // TEST 2 : Inscription réussie + Création automatique Bitnob
   // ─────────────────────────────────────────────────────────────
-  console.log("\n▶ [TEST_02_INSCRIPTION_SUCCESS] : Création compte SunuPay + Profil client Bitnob");
-  const testEmail = `fatou.${Date.now()}@sunupay-test.com`;
+  console.log("\n▶ [TEST_02_INSCRIPTION_SUCCESS] : Création compte PayLink Afrique + Profil client Bitnob");
+  const testEmail = `fatou.${Date.now()}@paylink-test.com`;
   let createdUserId = null;
   try {
     const resSuccess = await fetch(`${BASE_URL}/api/auth/register`, {
@@ -118,8 +118,8 @@ async function runTests() {
     });
 
     const dataSuccess = await resSuccess.json();
-    assert(resSuccess.status === 201 && dataSuccess.success === true, "Compte SunuPay créé avec code 201 Created");
-    assert(dataSuccess.user && dataSuccess.user.email === testEmail.toLowerCase(), "Utilisateur SunuPay initialisé avec ses données");
+    assert(resSuccess.status === 201 && dataSuccess.success === true, "Compte PayLink Afrique créé avec code 201 Created");
+    assert(dataSuccess.user && dataSuccess.user.email === testEmail.toLowerCase(), "Utilisateur PayLink Afrique initialisé avec ses données");
     assert(dataSuccess.bitnob && dataSuccess.bitnob.status === "synced", "Profil client Bitnob automatiquement synchronisé");
     assert(dataSuccess.bitnob.customerId && dataSuccess.bitnob.customerId.length > 5, "Identifiant client Bitnob assigné");
     createdUserId = dataSuccess.user.id;

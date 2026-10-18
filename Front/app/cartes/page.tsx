@@ -63,7 +63,7 @@ function CartesContent() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: "amadou@sunupay.com",
+          email: "amadou@paylink.africa",
           idType: kycIdType,
           idNumber: kycIdNumber.trim(),
           dateOfBirth: kycDateOfBirth,

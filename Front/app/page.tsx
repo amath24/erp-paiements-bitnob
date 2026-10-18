@@ -23,7 +23,7 @@ import {
   Globe,
   Wallet,
 } from "lucide-react";
-import { SunuPayLogo, BitnobLogo, BtrustLogo } from "@/components/ui/PartnerLogos";
+import { PayLinkLogo, BitnobLogo, BtrustLogo } from "@/components/ui/PartnerLogos";
 
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,7 +37,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="#accueil" className="transition-transform hover:scale-[1.02]">
-            <SunuPayLogo size="md" />
+            <PayLinkLogo size="md" />
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -138,7 +138,7 @@ export default function LandingPage() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full inline-flex items-center justify-center py-3 rounded-xl bg-[#F5C200] text-[#0F172A] font-bold text-sm shadow-sm"
               >
-                Se connecter à SunuPay
+                Se connecter à PayLink Afrique
               </Link>
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function LandingPage() {
 
               {/* Subheading */}
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl">
-                SunuPay est une plateforme intelligente qui centralise vos opérations financières,
+                PayLink Afrique est une plateforme intelligente qui centralise vos opérations financières,
                 facilite vos paiements et vous aide à prendre de meilleures décisions grâce à l&apos;IA.
               </p>
 
@@ -194,7 +194,7 @@ export default function LandingPage() {
                   <div className="w-6 h-6 rounded-full bg-[#FFF9E6] text-[#B45309] flex items-center justify-center">
                     <Play className="w-3 h-3 fill-current ml-0.5" />
                   </div>
-                  <span>Découvrir SunuPay</span>
+                  <span>Découvrir PayLink Afrique</span>
                 </Link>
               </div>
 
@@ -224,9 +224,9 @@ export default function LandingPage() {
                   <div className="bg-[#0F172A] px-4 py-2.5 flex items-center justify-between text-white border-b border-slate-800">
                     <div className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-md bg-[#F5C200] text-[#0F172A] flex items-center justify-center font-bold text-[10px]">
-                        S
+                        P
                       </div>
-                      <span className="text-xs font-bold tracking-tight">SunuPay</span>
+                      <span className="text-xs font-bold tracking-tight">PayLink Afrique</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -427,7 +427,7 @@ export default function LandingPage() {
               <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-3xl overflow-hidden shadow-2xl border border-slate-700/50 bg-[#0F172A] flex items-center justify-center">
                 <Image
                   src="/images/ai-robot-mascot.jpg"
-                  alt="Assistant IA SunuPay Mascot"
+                  alt="Assistant IA PayLink Afrique Mascot"
                   width={300}
                   height={300}
                   className="object-cover w-full h-full transform hover:scale-105 transition-transform duration-300"
@@ -506,13 +506,13 @@ export default function LandingPage() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          5. SECTION « POURQUOI CHOISIR SUNUPAY ? »
+          5. SECTION « POURQUOI CHOISIR PAYLINK AFRIQUE ? »
       ───────────────────────────────────────────────────────────── */}
       <section id="avantages" className="py-20 md:py-28 bg-[#F8F9FB] border-t border-gray-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-              Pourquoi choisir SunuPay ?
+              Pourquoi choisir PayLink Afrique ?
             </h2>
             <p className="text-sm sm:text-base text-gray-500 mt-3 leading-relaxed">
               Une solution pensée pour les entreprises africaines, alliant simplicité, sécurité et performance.
@@ -611,7 +611,7 @@ export default function LandingPage() {
           {/* Top Row */}
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-[#1e293b]">
             <div className="space-y-3">
-              <SunuPayLogo variant="dark" size="md" />
+              <PayLinkLogo variant="dark" size="md" />
               <p className="text-xs text-slate-400 max-w-sm">
                 Plus qu&apos;une plateforme, un partenaire pour votre croissance.
               </p>
@@ -643,7 +643,7 @@ export default function LandingPage() {
           {/* Bottom Row */}
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
             <div>
-              © 2026 SunuPay. Tous droits réservés.
+              © 2026 PayLink Afrique. Tous droits réservés.
             </div>
 
             <div className="flex items-center gap-6">

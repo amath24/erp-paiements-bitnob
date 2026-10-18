@@ -34,7 +34,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
   {
     id: "msg-1",
     sender: "assistant",
-    content: `Bonjour Amadou ! Je suis votre Assistant FinTech SunuPay.
+    content: `Bonjour Amadou ! Je suis votre Assistant FinTech PayLink Afrique.
 
 Je suis connecté aux taux en temps réel et aux paramètres de frais de votre compte pour répondre à toutes vos questions financières et techniques sans approximation.
 
@@ -233,7 +233,7 @@ function AssistantContent() {
     scrollToBottom();
   }, [messages, isTyping]);
 
-  const [providerInfo, setProviderInfo] = useState<string>("Moteur Déterministe SunuPay");
+  const [providerInfo, setProviderInfo] = useState<string>("Moteur Déterministe PayLink Afrique");
 
   const handleSendMessage = async (textToSend?: string) => {
     const query = textToSend || inputQuery;
@@ -300,7 +300,7 @@ function AssistantContent() {
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
-              Assistant IA SunuPay
+              Assistant IA PayLink Afrique
             </h1>
             <span className="text-[11px] bg-[#FFF9E6] text-amber-800 font-bold px-2 py-0.5 rounded-full border border-[#F5C200]/40 flex items-center gap-1">
               <Sparkles className="w-3 h-3 text-[#F5C200]" />

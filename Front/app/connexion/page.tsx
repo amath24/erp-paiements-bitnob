@@ -17,12 +17,12 @@ import {
   AlertCircle,
   KeyRound,
 } from "lucide-react";
-import { SunuPayLogo, BitnobLogo, BtrustLogo } from "@/components/ui/PartnerLogos";
+import { PayLinkLogo, BitnobLogo, BtrustLogo } from "@/components/ui/PartnerLogos";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase/client";
 
 export default function ConnexionPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("amadou@sunupay.com");
+  const [email, setEmail] = useState("amadou@paylink.africa");
   const [password, setPassword] = useState("••••••••••••");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -86,7 +86,7 @@ export default function ConnexionPage() {
       {/* Top Bar */}
       <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
         <Link href="/" className="transition-opacity hover:opacity-90">
-          <SunuPayLogo size="md" />
+          <PayLinkLogo size="md" />
         </Link>
 
         <Link
@@ -107,7 +107,7 @@ export default function ConnexionPage() {
               Bon retour !
             </h1>
             <p className="text-sm text-gray-500 mt-2 max-w-sm mx-auto">
-              Connectez-vous à votre espace SunuPay pour accéder à toutes vos fonctionnalités.
+              Connectez-vous à votre espace PayLink Afrique pour accéder à toutes vos fonctionnalités.
             </p>
           </div>
 
@@ -309,7 +309,7 @@ export default function ConnexionPage() {
       <footer className="w-full bg-[#0F172A] text-white py-6 border-t border-[#1e293b]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link href="/" className="transition-opacity hover:opacity-90">
-            <SunuPayLogo variant="dark" size="sm" />
+            <PayLinkLogo variant="dark" size="sm" />
           </Link>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">

@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        { success: false, error: "Utilisateur SunuPay introuvable." },
+        { success: false, error: "Utilisateur PayLink Afrique introuvable." },
         { status: 404 }
       );
     }
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     if (user.bitnobSyncStatus === "synced" && user.bitnobCustomerId) {
       return NextResponse.json({
         success: true,
-        message: "Ce compte SunuPay possède déjà un profil client Bitnob synchronisé.",
+        message: "Ce compte PayLink Afrique possède déjà un profil client Bitnob synchronisé.",
         status: "synced",
         customerId: user.bitnobCustomerId,
       });

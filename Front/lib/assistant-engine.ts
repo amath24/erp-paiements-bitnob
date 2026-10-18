@@ -109,7 +109,7 @@ export function generateAssistantReply(userQuery: string): {
 
   if (isExecutionAttempt) {
     return {
-      reply: `⛔ Action d'exécution financière refusée (Sécurité PayLink / SunuPay) :
+      reply: `⛔ Action d'exécution financière refusée (Sécurité PayLink Afrique) :
 
 L'assistant IA est strictement configuré comme un outil analytique et conversationnel en lecture seule. Il est techniquement et contractuellement interdit à l'assistant de déclencher des paiements, d'exécuter des virements réels ou de modifier des soldes.
 
@@ -145,27 +145,27 @@ Toute exécution de commande SQL DDL/DML arbitraire est strictement interdite. L
   }
 
   // -------------------------------------------------------------
-  // Connaissance Produit : SunuPay / PayLink Afrique ERP / Bitnob
+  // Connaissance Produit : PayLink Afrique / Bitnob
   // -------------------------------------------------------------
   if (
     q.includes("paylink") ||
-    q.includes("qu'est-ce que sunupay") ||
-    q.includes("c'est quoi sunupay") ||
+    q.includes("afrique") ||
+    q.includes("sunupay") ||
     q.includes("présenter") ||
     q.includes("presenter") ||
     (q.includes("fonctionne") && q.includes("bitnob"))
   ) {
     return {
-      reply: `SunuPay (PayLink Afrique ERP) est une solution FinTech B2B d'encaissement et de décaissement transfrontalier conçue pour les PME, commerçants et freelances africains.
+      reply: `PayLink Afrique est une solution FinTech B2B d'encaissement et de décaissement transfrontalier conçue pour les PME, commerçants et freelances africains.
 
-Comment fonctionne l'intégration SunuPay & Bitnob :
+Comment fonctionne l'intégration PayLink Afrique & Bitnob :
 1. Encaissement Multi-Devises : Vos clients internationaux peuvent payer en Bitcoin (sur le réseau Lightning ou on-chain) ou en stablecoins (USDT / USDC).
 2. Conversion & Rapprochement Automatique : Grâce à l'API Bitnob, les cryptomonnaies sont automatiquement converties en devises locales garanties (FCFA, NGN, GHS, KES).
 3. Règlement Mobile Money & Banque : Vous recevez vos fonds directement sur vos portefeuilles Mobile Money (Wave, Orange Money, MTN, Moov) ou comptes bancaires locaux sans friction de change.
 4. Paiements en Masse : Possibilité de payer des centaines de livreurs ou prestataires en un clic à travers toute l'Afrique.`,
       computation: {
         type: "product_overview",
-        details: { product: "SunuPay", engine: "Bitnob API v2" },
+        details: { product: "PayLink Afrique", engine: "Bitnob API v2" },
       },
     };
   }
@@ -275,7 +275,7 @@ Détail transparent du calcul :
 • Frais de réseau fixes : 0.50 USDT (environ 298 FCFA)
 • Total à facturer : ${netUsdtBeforeFee} + 0.50 = ${calc.invoiceAmountUSDT} USDT
 
-Vous pouvez dès à présent générer cette facture sur SunuPay.`,
+Vous pouvez dès à présent générer cette facture sur PayLink Afrique.`,
       computation: {
         type: "fee_calc",
         details: calc,
@@ -310,7 +310,7 @@ Vous pouvez dès à présent générer cette facture sur SunuPay.`,
 • Identifiant de transaction (TxHash) : ${t.txHash || "0x3f98a2...c890"}
 • Date de réception : ${t.date}
 
-Ces fonds sont disponibles pour un retrait immédiat vers votre compte Mobile Money ou pour recharger vos cartes virtuelles SunuPay.`,
+Ces fonds sont disponibles pour un retrait immédiat vers votre compte Mobile Money ou pour recharger vos cartes virtuelles PayLink Afrique.`,
         computation: {
           type: "tx_lookup",
           details: t,
@@ -341,7 +341,7 @@ Ces fonds sont disponibles pour un retrait immédiat vers votre compte Mobile Mo
         .join("\n");
 
       return {
-        reply: `Pour votre client ou bénéficiaire au ${data.country} ${data.flag}, SunuPay propose les canaux de règlement et de retrait suivants :
+        reply: `Pour votre client ou bénéficiaire au ${data.country} ${data.flag}, PayLink Afrique propose les canaux de règlement et de retrait suivants :
 
 ${methodsList}
 
@@ -358,7 +358,7 @@ ${methodsList}
 
   // Fallback général
   return {
-    reply: `Je suis l'assistant FinTech SunuPay (PayLink Afrique ERP). Je peux analyser vos décaissements de masse, calculer vos factures inverses au centime près, ou expliquer vos flux de paiement Bitnob.
+    reply: `Je suis l'assistant FinTech PayLink Afrique. Je peux analyser vos décaissements de masse, calculer vos factures inverses au centime près, ou expliquer vos flux de paiement Bitnob.
 
 Vous pouvez par exemple me demander :
 1. Combien avons-nous payé au Ghana ce mois-ci ?

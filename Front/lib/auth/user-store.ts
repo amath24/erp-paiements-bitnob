@@ -27,6 +27,8 @@ export interface SunuPayUser {
   };
 }
 
+export type PayLinkUser = SunuPayUser;
+
 // Global server memory store (persists across hot-reloads and requests within server lifecycle)
 const globalUsers = (globalThis as any).__sunupay_users_store || new Map<string, SunuPayUser>();
 (globalThis as any).__sunupay_users_store = globalUsers;
@@ -37,7 +39,7 @@ if (globalUsers.size === 0) {
     id: "usr_sunupay_amadou_01",
     firstName: "Amadou",
     lastName: "Dione",
-    email: "amadou@sunupay.com",
+    email: "amadou@paylink.africa",
     phone: "+221771234567",
     countryCode: "SN",
     createdAt: "2026-01-15T10:00:00.000Z",
@@ -47,7 +49,8 @@ if (globalUsers.size === 0) {
     bitnobSyncedAt: "2026-01-15T10:01:00.000Z",
     kycStatus: "approved",
   };
-  globalUsers.set(defaultUser.email.toLowerCase(), defaultUser);
+  globalUsers.set("amadou@paylink.africa", defaultUser);
+  globalUsers.set("amadou@sunupay.com", defaultUser);
 }
 
 /**

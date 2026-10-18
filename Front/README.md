@@ -1,6 +1,6 @@
-# SunuPay — Passerelle FinTech Bitcoin, Stablecoins & Mobile Money
+# PayLink Afrique — Passerelle FinTech Bitcoin, Stablecoins & Mobile Money
 
-SunuPay est une application web FinTech moderne conçue pour les freelances, créateurs, commerçants et PME en Afrique et à l'international. Elle permet d'émettre des factures réglables en crypto-actifs (Bitcoin, USDT, USDC) et de transférer instantanément les fonds vers les opérateurs locaux de Mobile Money (Wave, Orange Money, Free, MTN) et comptes bancaires.
+PayLink Afrique est une application web FinTech moderne conçue pour les freelances, créateurs, commerçants et PME en Afrique et à l'international. Elle permet d'émettre des factures réglables en crypto-actifs (Bitcoin, USDT, USDC) et de transférer instantanément les fonds vers les opérateurs locaux de Mobile Money (Wave, Orange Money, Free, MTN) et comptes bancaires.
 
 ---
 
@@ -26,7 +26,7 @@ L'interface est strictement alignée sur la maquette officielle :
 ### 2. Gestion des Factures (`/factures`)
 - Formulaire interactif de création avec devises personnalisées (USD, EUR, USDT, USDC).
 - Sélection des crypto-actifs acceptés (Bitcoin, USDT TRC20/ERC20, USDC).
-- **Aperçu temps réel (Live Preview)** avec carte certifiée, QR Code dynamique intégrant le badge SunuPay et lien de paiement partageable avec copie instantanée.
+- **Aperçu temps réel (Live Preview)** avec carte certifiée, QR Code dynamique intégrant le badge PayLink Afrique et lien de paiement partageable avec copie instantanée.
 - Liste complète des factures avec recherche textuelle et filtres par statut (*Brouillon*, *En attente*, *Payée*, *Expirée*).
 
 ### 3. Transferts & Décaissements (`/transferts`)

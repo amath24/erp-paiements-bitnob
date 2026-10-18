@@ -68,9 +68,14 @@ export function AppSidebar({
             </svg>
           </div>
           {!collapsed && (
-            <div className="flex items-baseline">
-              <span className="text-lg font-bold tracking-tight text-white">Sunu</span>
-              <span className="text-lg font-bold tracking-tight text-[#F5C200]">Pay</span>
+            <div className="flex items-baseline gap-1.5">
+              <div className="flex items-baseline">
+                <span className="text-lg font-bold tracking-tight text-white">Pay</span>
+                <span className="text-lg font-bold tracking-tight text-[#F5C200]">Link</span>
+              </div>
+              <span className="text-[9px] font-extrabold uppercase px-1 py-0.5 rounded bg-[#F5C200]/20 text-[#FDE047] border border-[#F5C200]/30 tracking-wider">
+                Afrique
+              </span>
             </div>
           )}
         </Link>

@@ -82,7 +82,7 @@ function FacturesContent() {
         notes: notes || undefined,
         status: "pending",
         createdAt: new Date().toISOString(),
-        shareableUrl: `https://sunupay.io/pay/${newInvNumber}`,
+        shareableUrl: `https://paylink.africa/pay/${newInvNumber}`,
       };
 
       setInvoices([newInvoice, ...invoices]);
@@ -106,7 +106,7 @@ function FacturesContent() {
     return matchesSearch && matchesStatus;
   });
 
-  const currentShareableUrl = `https://sunupay.io/pay/${invoiceNumber}`;
+  const currentShareableUrl = `https://paylink.africa/pay/${invoiceNumber}`;
 
   return (
     <div className="space-y-6">

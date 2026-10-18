@@ -10,7 +10,7 @@ export const MOCK_USER = {
   name: "Amadou Dione",
   title: "Freelance",
   avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250",
-  email: "amadou.dione@sunupay.io",
+  email: "amadou.dione@paylink.africa",
   phone: "+221 77 123 45 67",
   country: "Sénégal",
   currency: "USD",
@@ -158,7 +158,7 @@ export const MOCK_INVOICES: Invoice[] = [
     notes: "Facturation pour la refonte complète de la charte graphique et livrables vectoriels.",
     status: "pending",
     createdAt: "2026-10-16T14:30:00Z",
-    shareableUrl: "https://sunupay.io/pay/SP-1042",
+    shareableUrl: "https://paylink.africa/pay/SP-1042",
     paymentAddress: {
       USDT: "TJz7XqP9kK2Wq8546bYF4tCjB2ZLm99q1a",
       BTC: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
@@ -177,7 +177,7 @@ export const MOCK_INVOICES: Invoice[] = [
     notes: "Mission d'architecture backend et sécurisation des webhooks.",
     status: "paid",
     createdAt: "2026-10-15T09:00:00Z",
-    shareableUrl: "https://sunupay.io/pay/SP-1041",
+    shareableUrl: "https://paylink.africa/pay/SP-1041",
     paidAmount: 120.0,
     paidCurrency: "USDT",
   },
@@ -193,7 +193,7 @@ export const MOCK_INVOICES: Invoice[] = [
     notes: "Livrables haute fidélité pour application mobile.",
     status: "pending",
     createdAt: "2026-10-14T11:20:00Z",
-    shareableUrl: "https://sunupay.io/pay/SP-1040",
+    shareableUrl: "https://paylink.africa/pay/SP-1040",
   },
   {
     id: "inv-1039",
@@ -207,7 +207,7 @@ export const MOCK_INVOICES: Invoice[] = [
     notes: "Rapport d'audit et recommandations techniques.",
     status: "paid",
     createdAt: "2026-10-10T16:00:00Z",
-    shareableUrl: "https://sunupay.io/pay/SP-1039",
+    shareableUrl: "https://paylink.africa/pay/SP-1039",
     paidAmount: 75.0,
     paidCurrency: "USDT",
   },
@@ -223,7 +223,7 @@ export const MOCK_INVOICES: Invoice[] = [
     notes: "Facturation échue le 05/10/2026.",
     status: "expired",
     createdAt: "2026-09-25T10:00:00Z",
-    shareableUrl: "https://sunupay.io/pay/SP-1038",
+    shareableUrl: "https://paylink.africa/pay/SP-1038",
   },
 ];
 

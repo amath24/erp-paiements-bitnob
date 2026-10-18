@@ -20,7 +20,7 @@ import {
   RefreshCw,
   Sparkles,
 } from "lucide-react";
-import { SunuPayLogo, BitnobLogo, BtrustLogo } from "@/components/ui/PartnerLogos";
+import { PayLinkLogo, BitnobLogo, BtrustLogo } from "@/components/ui/PartnerLogos";
 
 const COUNTRY_DIAL_CODES = [
   { code: "SN", dial: "+221", name: "Sénégal 🇸🇳" },
@@ -191,7 +191,7 @@ export default function InscriptionPage() {
       {/* Top Bar */}
       <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
         <Link href="/" className="transition-opacity hover:opacity-90">
-          <SunuPayLogo size="md" />
+          <PayLinkLogo size="md" />
         </Link>
 
         <div className="flex items-center gap-3">
@@ -220,10 +220,10 @@ export default function InscriptionPage() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFFBEB] border border-[#FDE68A] text-[#92400E] text-[11px] font-bold uppercase tracking-wider mb-2">
               <Sparkles className="w-3.5 h-3.5 text-[#F5C200]" />
-              <span>Ouverture de compte SunuPay</span>
+              <span>Ouverture de compte PayLink Afrique</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight">
-              Rejoignez SunuPay
+              Rejoignez PayLink Afrique
             </h1>
             <p className="text-xs sm:text-sm text-gray-500 mt-2 max-w-md mx-auto leading-relaxed">
               Créez votre compte en quelques instants pour centraliser vos paiements transfrontaliers, vos factures et bénéficier de l&apos;écosystème Bitnob.
@@ -237,10 +237,10 @@ export default function InscriptionPage() {
               <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm space-y-2 mb-6 animate-fadeIn">
                 <div className="flex items-center gap-2 font-bold text-emerald-900">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                  <span>Compte SunuPay & Profil Bitnob prêts !</span>
+                  <span>Compte PayLink Afrique & Profil Bitnob prêts !</span>
                 </div>
                 <p className="text-xs text-emerald-700 leading-relaxed">
-                  Votre compte SunuPay a été créé et votre profil client officiel a été provisionné chez Bitnob.
+                  Votre compte PayLink Afrique a été créé et votre profil client officiel a été provisionné chez Bitnob.
                 </p>
                 <div className="p-2 rounded-lg bg-white/80 border border-emerald-200 text-[11px] font-mono text-emerald-800 flex items-center justify-between">
                   <span>ID Bitnob :</span>
@@ -263,10 +263,10 @@ export default function InscriptionPage() {
               <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs sm:text-sm space-y-3 mb-6 animate-fadeIn">
                 <div className="flex items-center gap-2 font-bold text-amber-950">
                   <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0" />
-                  <span>Compte SunuPay créé avec succès</span>
+                  <span>Compte PayLink Afrique créé avec succès</span>
                 </div>
                 <p className="text-xs text-amber-800 leading-relaxed">
-                  Vos identifiants SunuPay sont actifs. La synchronisation automatique avec l&apos;API Bitnob est temporairement en attente (réseau ou permissions API).
+                  Vos identifiants PayLink Afrique sont actifs. La synchronisation automatique avec l&apos;API Bitnob est temporairement en attente (réseau ou permissions API).
                 </p>
                 <div className="flex flex-col sm:flex-row items-center gap-2 pt-1">
                   <button
@@ -502,7 +502,7 @@ export default function InscriptionPage() {
                       className="w-4 h-4 rounded text-[#F5C200] focus:ring-[#F5C200] border-gray-300 rounded-md mt-0.5"
                     />
                     <span>
-                      J&apos;accepte les conditions d&apos;utilisation de SunuPay et la synchronisation sécurisée de mon profil chez Bitnob.
+                      J&apos;accepte les conditions d&apos;utilisation de PayLink Afrique et la synchronisation sécurisée de mon profil chez Bitnob.
                     </span>
                   </label>
                 </div>
@@ -520,7 +520,7 @@ export default function InscriptionPage() {
                     </>
                   ) : (
                     <>
-                      <span>Créer mon compte SunuPay</span>
+                      <span>Créer mon compte PayLink Afrique</span>
                       <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                     </>
                   )}
@@ -547,7 +547,7 @@ export default function InscriptionPage() {
                       Sécurité et souveraineté de vos accès
                     </div>
                     <p className="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
-                      Vos identifiants SunuPay restent uniques et exclusifs. Aucun mot de passe n&apos;est transmis ni généré chez Bitnob. Toutes les requêtes d&apos;interconnexion sont chiffrées côté serveur.
+                      Vos identifiants PayLink Afrique restent uniques et exclusifs. Aucun mot de passe n&apos;est transmis ni généré chez Bitnob. Toutes les requêtes d&apos;interconnexion sont chiffrées côté serveur.
                     </p>
                   </div>
                 </div>
@@ -581,7 +581,7 @@ export default function InscriptionPage() {
       <footer className="w-full bg-[#0F172A] text-white py-6 border-t border-[#1e293b]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link href="/" className="transition-opacity hover:opacity-90">
-            <SunuPayLogo variant="dark" size="sm" />
+            <PayLinkLogo variant="dark" size="sm" />
           </Link>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">

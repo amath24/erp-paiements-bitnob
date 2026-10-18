@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     }
 
     const eventType = payload.event;
-    console.log(`[SunuPay Webhook] Événement reçu : ${eventType}`, payload);
+    console.log(`[PayLink Afrique Webhook] Événement reçu : ${eventType}`, payload);
 
     // Handle events
     switch (eventType) {

@@ -43,9 +43,9 @@ export function InvoicePreviewCard({
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-lg bg-[#F5C200] flex items-center justify-center text-[#0f172a] font-bold text-xs">
-              S
+              P
             </div>
-            <span className="font-bold text-base tracking-tight">SunuPay</span>
+            <span className="font-bold text-base tracking-tight">PayLink Afrique</span>
           </div>
           <span className="text-[10px] bg-white/10 text-gray-300 px-2 py-0.5 rounded-full font-medium">
             Facture certifiée

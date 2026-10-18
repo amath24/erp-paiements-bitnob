@@ -113,9 +113,9 @@ export function BtrustLogo({ className, variant = "light", size = "md" }: LogoPr
 }
 
 /**
- * SunuPay Brand Logo
+ * PayLink Afrique Brand Logo
  */
-export function SunuPayLogo({ className, variant = "light", size = "md" }: LogoProps) {
+export function PayLinkLogo({ className, variant = "light", size = "md" }: LogoProps) {
   const isDark = variant === "dark";
   const textColor = isDark ? "text-white" : "text-[#0F172A]";
 
@@ -147,10 +147,25 @@ export function SunuPayLogo({ className, variant = "light", size = "md" }: LogoP
           <path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm1.5 13.5c-2.5.2-4.5-1-4.5-2.5h2c0 .6 1 .9 2.5.8 1.4-.1 2-.7 2-1.3 0-.7-.5-1.1-2.2-1.5-2.6-.6-3.8-1.5-3.8-3.2 0-1.8 1.5-3 3.5-3.1 2.2-.1 4.1.8 4.2 2.3h-2c0-.5-.8-.8-2.2-.7-1.2.1-1.8.6-1.8 1.2 0 .7.6 1.1 2.4 1.5 2.5.6 3.6 1.6 3.6 3.3 0 2-1.7 3.1-3.7 3.2z" />
         </svg>
       </div>
-      <div className="flex items-baseline">
-        <span className={cn("font-bold tracking-tight", textSizes[size], textColor)}>Sunu</span>
-        <span className={cn("font-bold tracking-tight text-[#F5C200]", textSizes[size])}>Pay</span>
+      <div className="flex items-baseline gap-1.5">
+        <div className="flex items-baseline">
+          <span className={cn("font-extrabold tracking-tight", textSizes[size], textColor)}>Pay</span>
+          <span className={cn("font-extrabold tracking-tight text-[#F5C200]", textSizes[size])}>Link</span>
+        </div>
+        <span
+          className={cn(
+            "text-[10px] font-extrabold tracking-wider uppercase px-1.5 py-0.5 rounded-md",
+            isDark
+              ? "bg-[#F5C200]/20 text-[#FDE047] border border-[#F5C200]/30"
+              : "bg-[#FFF9E6] text-[#B45309] border border-[#FDE68A]"
+          )}
+        >
+          Afrique
+        </span>
       </div>
     </div>
   );
 }
+
+// Backwards-compatible alias
+export const SunuPayLogo = PayLinkLogo;
